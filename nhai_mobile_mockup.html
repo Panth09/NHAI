@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NHAI NSV Mobile App Mockup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .phone-container {
+            position: relative;
+            width: 375px;
+            height: 812px;
+            background: #000;
+            border-radius: 40px;
+            padding: 10px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .status-bar {
+            height: 44px;
+            background: #1a237e;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .header {
+            background: #1a237e;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header h1 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .location-info {
+            background: #e8f5e8;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .location-info h3 {
+            color: #2e7d32;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .location-info p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1a237e;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .distress-section {
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .distress-item {
+            background: white;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .distress-item.high {
+            border-left-color: #d32f2f;
+        }
+
+        .distress-item.medium {
+            border-left-color: #f57c00;
+        }
+
+        .distress-item.low {
+            border-left-color: #388e3c;
+        }
+
+        .distress-info h4 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .distress-info p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .severity-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .severity-badge.high {
+            background: #ffebee;
+            color: #d32f2f;
+        }
+
+        .severity-badge.medium {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .severity-badge.low {
+            background: #e8f5e8;
+            color: #388e3c;
+        }
+
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #ddd;
+            display: flex;
+            height: 70px;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #666;
+            font-size: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item.active {
+            color: #1a237e;
+            background: #f5f5f5;
+        }
+
+        .nav-item .icon {
+            width: 20px;
+            height: 20px;
+            margin-bottom: 4px;
+            background: currentColor;
+            border-radius: 2px;
+        }
+
+        .floating-btn {
+            position: absolute;
+            bottom: 90px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: #1a237e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(26, 35, 126, 0.4);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .content {
+            padding-bottom: 90px;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #4caf50;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .video-thumbnail {
+            width: 60px;
+            height: 40px;
+            background: #333;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="phone-screen">
+            <div class="status-bar">
+                <span>9:41</span>
+                <span>📶 4G 🔋 85%</span>
+            </div>
+            
+            <div class="header">
+                <h1>NSV Monitor</h1>
+                <div class="live-indicator">
+                    <div class="live-dot"></div>
+                    LIVE
+                </div>
+            </div>
+            
+            <div class="location-info">
+                <h3>NH-48, Vadodara-Mumbai</h3>
+                <p>Chainage: 125.5 KM | Lane: 1 (Up) | GPS: 22.3072°N, 73.1812°E</p>
+            </div>
+            
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <div class="stat-value">3.2</div>
+                    <div class="stat-label">IRI (m/km)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">8.5</div>
+                    <div class="stat-label">Rut Depth (mm)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Cracks/km</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">85</div>
+                    <div class="stat-label">Survey %</div>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="distress-section">
+                    <h3 class="section-title">Current Distress Conditions</h3>
+                    
+                    <div class="distress-item high">
+                        <div class="distress-info">
+                            <h4>Pavement Roughness</h4>
+                            <p>IRI: 4.2 m/km at Ch. 125.2 KM</p>
+                        </div>
+                        <div>
+                            <span class="severity-badge high">High</span>
+                        </div>
+                    </div>
+                    
+                    <div class="distress-item medium">
+                        <div class="distress-info">
+                            <h4>Rutting</h4>
+                            <p>Depth: 12.5mm at Ch. 125.4 KM</p>
+                        </div>
+                        <div>
+                            <span class="severity-badge medium">Medium</span>
+                        </div>
+                    </div>
+                    
+                    <div class="distress-item low">
+                        <div class="distress-info">
+                            <h4>Ravelling</h4>
+                            <p>Minor aggregate loss detected</p>
+                        </div>
+                        <div>
+                            <span class="severity-badge low">Low</span>
+                        </div>
+                    </div>
+                    
+                    <div class="distress-item high">
+                        <div class="distress-info">
+                            <h4>Longitudinal Cracking</h4>
+                            <p>Length: 25m at Ch. 125.1 KM</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div class="video-thumbnail">▶️</div>
+                            <span class="severity-badge high">High</span>
+                        </div>
+                    </div>
+                    
+                    <div class="distress-item medium">
+                        <div class="distress-info">
+                            <h4>Transverse Cracking</h4>
+                            <p>Width: 2.5mm at Ch. 125.3 KM</p>
+                        </div>
+                        <div>
+                            <span class="severity-badge medium">Medium</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="floating-btn">
+                📍
+            </div>
+            
+            <div class="bottom-nav">
+                <a href="#" class="nav-item active">
+                    <div class="icon"></div>
+                    Dashboard
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="icon"></div>
+                    Map
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="icon"></div>
+                    Reports
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="icon"></div>
+                    Settings
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
