@@ -25,3 +25,44 @@ A real-time web-based dashboard built with **React** and **Tailwind CSS** to mon
 
 ## 📁 Folder Structure
 
+nhai-frontend/
+│
+├── public/
+│ └── index.html
+├── src/
+│ ├── components/
+│ │ └── NSVDashboard.js
+│ ├── App.js
+│ ├── App.css
+│ ├── index.js
+│ └── index.css
+├── package.json
+├── tailwind.config.js
+└── postcss.config.js
+
+
+
+---
+
+## 🛠️ Setup Instructions
+
+1. **Clone the repository / Extract zip**
+2. Navigate into the project folder:
+
+   ```bash
+   cd nhai-frontend
+
+
+🖼️ UI Preview
+<img src="./screenshot.png" alt="Dashboard Preview" width="600"/>
+🤖 Future Enhancements
+✅ Integration with Google Maps for actual geo overlays
+
+🔔 Notification system for alerts
+
+🧪 LLM integration for maintenance summary generation
+
+📥 Data export (PDF, Excel)
+
+📜 License
+This project is developed for educational and hackathon purposes. Please credit the author if reused.
